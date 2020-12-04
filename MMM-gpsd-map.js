@@ -81,6 +81,6 @@ Module.register("MMM-gpsd-map", {
   centerLeafletMapOnMarker: function (map, marker) {
     var latLngs = [marker.getLatLng()];
     var markerBounds = L.latLngBounds(latLngs);
-    map.fitBounds(markerBounds, { maxZoom: 18 });
+    map.fitBounds(markerBounds, { maxZoom: 13 });
   }
 });

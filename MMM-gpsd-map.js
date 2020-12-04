@@ -12,7 +12,8 @@ Module.register("MMM-gpsd-map", {
     height: "100px",
 
     tileServerUrl: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    maxZoom: 15
+    maxZoom: 15,
+    dynamicZoom: true
   },
 
   start: function () {
@@ -85,6 +86,31 @@ Module.register("MMM-gpsd-map", {
   centerLeafletMapOnMarker: function (map, marker) {
     var latLngs = [marker.getLatLng()];
     var markerBounds = L.latLngBounds(latLngs);
-    map.fitBounds(markerBounds, { maxZoom: this.config.maxZoom });
+    map.fitBounds(markerBounds, { maxZoom: this.getZoomFromSpeed(this.speed) });
+  },
+
+  getZoomFromSpeed: function (speed) {
+    if (!this.config.dynamicZoom) {
+      return this.config.maxZoom;
+    }
+
+    var min = 2.2352, // 5mph
+      slow = 11.176, // 25mph
+      med = 19.66976, // 44mph
+      fast = 26.8224; // 60mph
+
+    if (speed <= min) {
+      return 18;
+    } else if (speed <= slow && speed > min) {
+      return 15;
+    } else if (speed <= med && speed > slow) {
+      return 13;
+    } else if (speed <= fast && speed > med) {
+      return 10;
+    } else if (speed > fast) {
+      return 8;
+    } else {
+      return this.config.maxZoom;
+    }
   }
 });

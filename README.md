@@ -46,3 +46,4 @@ modules:[
 | `height`        | The height of the map displayed                         | `100px`                                              |
 | `tileServerUrl` | The tile server to use when rendering the map           | `https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png` |
 | `maxZoom`       | The maximum map zoom to use when following the position | `15`                                                 |
+| `dynamicZoom`   | The map will zoom in/out based on speed                 | `true`                                               |

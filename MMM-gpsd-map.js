@@ -6,7 +6,13 @@
 Module.register("MMM-gpsd-map", {
   // Default module config.
   defaults: {
-    header: "GPS Map"
+    header: "GPS Map",
+
+    width: "150px",
+    height: "100px",
+
+    tileServerUrl: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    maxZoom: 15
   },
 
   start: function () {
@@ -35,13 +41,13 @@ Module.register("MMM-gpsd-map", {
     var self = this;
     var mapid = document.createElement("div");
     mapid.innerHTML = self.map;
-    mapid.style.height = "300px";
-    mapid.style.width = "450px";
+    mapid.style.height = this.config.height;
+    mapid.style.width = this.config.width;
 
     self.map = L.map(mapid, {
       attributionControl: false,
       zoomControl: false
-    }).setView([this.lat, this.lon], 13);
+    }).setView([this.lat, this.lon], this.config.maxZoom);
 
     setTimeout(function () {
       self.map.invalidateSize();
@@ -53,9 +59,7 @@ Module.register("MMM-gpsd-map", {
 
     this.centerLeafletMapOnMarker(this.map, marker);
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(
-      self.map
-    );
+    L.tileLayer(this.config.tileServerUrl).addTo(self.map);
 
     return mapid;
   },
@@ -81,6 +85,6 @@ Module.register("MMM-gpsd-map", {
   centerLeafletMapOnMarker: function (map, marker) {
     var latLngs = [marker.getLatLng()];
     var markerBounds = L.latLngBounds(latLngs);
-    map.fitBounds(markerBounds, { maxZoom: 15 });
+    map.fitBounds(markerBounds, { maxZoom: this.config.maxZoom });
   }
 });

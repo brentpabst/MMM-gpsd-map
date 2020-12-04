@@ -39,6 +39,10 @@ modules:[
 
 ### Options
 
-| Option   | Description                | Default       |
-| -------- | -------------------------- | ------------- |
-| `header` | The header text to display | `GPS Details` |
+| Option          | Description                                             | Default                                              |
+| --------------- | ------------------------------------------------------- | ---------------------------------------------------- |
+| `header`        | The header text to display                              | `GPS Details`                                        |
+| `width`         | The width of the map displayed                          | `150px`                                              |
+| `height`        | The height of the map displayed                         | `100px`                                              |
+| `tileServerUrl` | The tile server to use when rendering the map           | `https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png` |
+| `maxZoom`       | The maximum map zoom to use when following the position | `15`                                                 |

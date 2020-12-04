@@ -35,8 +35,8 @@ Module.register("MMM-gpsd-map", {
     var self = this;
     var mapid = document.createElement("div");
     mapid.innerHTML = self.map;
-    mapid.style.height = "250px";
-    mapid.style.width = "350px";
+    mapid.style.height = "300px";
+    mapid.style.width = "450px";
 
     self.map = L.map(mapid, {
       attributionControl: false,
@@ -81,6 +81,6 @@ Module.register("MMM-gpsd-map", {
   centerLeafletMapOnMarker: function (map, marker) {
     var latLngs = [marker.getLatLng()];
     var markerBounds = L.latLngBounds(latLngs);
-    map.fitBounds(markerBounds, { maxZoom: 10 });
+    map.fitBounds(markerBounds, { maxZoom: 18 });
   }
 });

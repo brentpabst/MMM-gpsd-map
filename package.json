@@ -1,0 +1,22 @@
+{
+  "name": "mmm-gpsd-map",
+  "version": "1.0.0",
+  "description": "Displays GPS information on a map",
+  "main": "MMM-gpsd.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brentpabst/MMM-gpsd-map.git"
+  },
+  "author": "Brent Pabst",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brentpabst/MMM-gpsd-map/issues"
+  },
+  "homepage": "https://github.com/brentpabst/MMM-gpsd-map#readme",
+  "dependencies": {
+    "leaflet": "^1.7.1"
+  }
+}

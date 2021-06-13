@@ -12,6 +12,7 @@ Module.register("MMM-gpsd-map", {
     height: "100px",
 
     tileServerUrl: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    apiKey: "",
     maxZoom: 15,
     dynamicZoom: true
   },
@@ -61,6 +62,13 @@ Module.register("MMM-gpsd-map", {
     this.centerLeafletMapOnMarker(this.map, marker);
 
     L.tileLayer(this.config.tileServerUrl).addTo(self.map);
+
+    if (this.config.apiKey) {
+      L.tileLayer(
+        "https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=" +
+          this.config.apiKey
+      ).addTo(self.map);
+    }
 
     return mapid;
   },
